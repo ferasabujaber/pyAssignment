@@ -1,5 +1,6 @@
+import logging
 from collections import deque
-import requests
+from Config import Config
 
 
 class Queue:
@@ -7,7 +8,11 @@ class Queue:
         self.items = deque()
 
     def enqueue(self, item):
-        self.items.append(item)
+        if self.size() <= Config.SIZE_OF_QUEUE.value:
+            self.items.append(item)
+            print(f"added successfully {item} to the Queue")
+        else:
+            logging.warning(f" Couldn't load {item} to the Queue ,  it's Full  ")
 
     def dequeue(self):
         return self.items.popleft()
