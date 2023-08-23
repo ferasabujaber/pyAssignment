@@ -8,13 +8,16 @@ class Queue:
         self.items = deque()
 
     def enqueue(self, item):
-        if self.size() <= Config.SIZE_OF_QUEUE.value:
+        if self.size() < Config.SIZE_OF_QUEUE.value:
             self.items.append(item)
             print(f"added successfully {item} to the Queue")
         else:
             logging.warning(f" Couldn't load {item} to the Queue ,  it's Full  ")
 
     def dequeue(self):
+        if self.is_empty():
+            logging.warning("Queue is empty")
+            return
         return self.items.popleft()
 
     def is_empty(self):

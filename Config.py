@@ -2,7 +2,7 @@ from enum import Enum
 
 
 class Config(Enum):
-    SIZE_OF_QUEUE = 1
+    SIZE_OF_QUEUE = 3
     ONE_THREAD = 1  # Section A
     NUMBER_OF_THREADS = 3  # Section B
     POSTS = "https://jsonplaceholder.typicode.com/posts/1"
