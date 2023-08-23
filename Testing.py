@@ -1,7 +1,10 @@
 import unittest
 
 import requests
+
+import Config
 from Queue import Queue
+from main import worker, addTasks
 
 posts = "https://jsonplaceholder.typicode.com/posts/1"
 todo = "https://jsonplaceholder.typicode.com/todos/1"
@@ -23,6 +26,15 @@ class Testing(unittest.TestCase):
         q = Queue()
         self.assertTrue(q.is_empty())
         q.enqueue(posts)
+
+    def test_workerFunction(self):
+        q = Queue()
+        self.assertEqual(worker(Config.Config.USERS.value),200)
+        q.enqueue(posts)
+
+    def test_addTasksFunction(self):
+        q = addTasks(Queue())
+        self.assertEqual(q.size(),Config.Config.SIZE_OF_QUEUE.value)
 
 
 
